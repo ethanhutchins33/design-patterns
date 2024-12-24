@@ -3,7 +3,15 @@ public class ChocolateBoiler
     private bool empty;
     private bool boiled;
 
-    public ChocolateBoiler()
+    private static ChocolateBoiler ChocolateBoilerInstance;
+
+    public static ChocolateBoiler GetInstance()
+    {
+        ChocolateBoilerInstance ??= new ChocolateBoiler();
+        return ChocolateBoilerInstance;
+    }
+
+    private ChocolateBoiler()
     {
         empty = true;
         boiled = false;
@@ -13,7 +21,7 @@ public class ChocolateBoiler
     {
         if (IsEmpty())
         {
-            // fill the boiler with a milk/chocolate mixture
+            Console.WriteLine("Filling boiler with a milky chocolatey mixture...");
             empty = false;
             boiled = false;
         }
@@ -23,7 +31,7 @@ public class ChocolateBoiler
     {
         if (!IsEmpty() && IsBoiled())
         {
-            // drain the boiled milk and chocolate
+            Console.WriteLine("Draining boiler...");
             empty = true;
         }
     }
@@ -32,7 +40,7 @@ public class ChocolateBoiler
     {
         if (!IsEmpty() && !IsBoiled())
         {
-            // bring the contents to a boil
+            Console.WriteLine("Boiling the milky chocolatey mixture...");
             boiled = true;
         }
     }

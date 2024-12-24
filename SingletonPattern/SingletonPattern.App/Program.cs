@@ -1,2 +1,6 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿var boiler = ChocolateBoiler.GetInstance();
+boiler.Fill();
+boiler.Boil();
+boiler.Drain();
+
+Console.ReadLine();
