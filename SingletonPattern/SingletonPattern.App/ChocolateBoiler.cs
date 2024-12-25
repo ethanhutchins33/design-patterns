@@ -2,58 +2,55 @@ namespace SingletonPattern.App;
 
 public class ChocolateBoiler
 {
-    private bool empty;
-    private bool boiled;
+    private bool _empty;
+    private bool _boiled;
 
-    private static ChocolateBoiler ChocolateBoilerInstance;
+    private static ChocolateBoiler? _chocolateBoilerInstance;
 
     public static ChocolateBoiler GetInstance()
     {
-        ChocolateBoilerInstance ??= new ChocolateBoiler();
-        return ChocolateBoilerInstance;
+        _chocolateBoilerInstance ??= new ChocolateBoiler();
+        return _chocolateBoilerInstance;
     }
 
     private ChocolateBoiler()
     {
-        empty = true;
-        boiled = false;
+        _empty = true;
+        _boiled = false;
     }
 
     public void Fill()
     {
-        if (IsEmpty())
-        {
-            Console.WriteLine("Filling boiler with a milky chocolatey mixture...");
-            empty = false;
-            boiled = false;
-        }
+        if (!IsEmpty()) return;
+
+        Console.WriteLine("Filling boiler with a milky chocolatey mixture...");
+        _empty = false;
+        _boiled = false;
     }
 
     public void Drain()
     {
-        if (!IsEmpty() && IsBoiled())
-        {
-            Console.WriteLine("Draining boiler...");
-            empty = true;
-        }
+        if (IsEmpty() || !IsBoiled()) return;
+
+        Console.WriteLine("Draining boiler...");
+        _empty = true;
     }
 
     public void Boil()
     {
-        if (!IsEmpty() && !IsBoiled())
-        {
-            Console.WriteLine("Boiling the milky chocolatey mixture...");
-            boiled = true;
-        }
+        if (IsEmpty() || IsBoiled()) return;
+
+        Console.WriteLine("Boiling the milky chocolatey mixture...");
+        _boiled = true;
     }
 
     private bool IsBoiled()
     {
-        return boiled;
+        return _boiled;
     }
 
     private bool IsEmpty()
     {
-        return empty;
+        return _empty;
     }
 }
