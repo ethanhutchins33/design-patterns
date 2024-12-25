@@ -1,4 +1,6 @@
-﻿var boiler = ChocolateBoiler.GetInstance();
+﻿using SingletonPattern.App;
+
+var boiler = ChocolateBoiler.GetInstance();
 boiler.Fill();
 boiler.Boil();
 boiler.Drain();

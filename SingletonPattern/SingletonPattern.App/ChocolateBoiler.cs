@@ -1,3 +1,5 @@
+namespace SingletonPattern.App;
+
 public class ChocolateBoiler
 {
     private bool empty;
