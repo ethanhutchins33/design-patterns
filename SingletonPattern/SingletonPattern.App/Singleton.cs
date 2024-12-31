@@ -1,10 +1,12 @@
+namespace SingletonPattern.App;
+
 public class Singleton
 {
-    private static Singleton uniqueInstance;
+    private static Singleton? _uniqueInstance;
     private Singleton() { }
-    public static Singleton GetInstance()
+    public static Singleton? GetInstance()
     {
-        uniqueInstance ??= new Singleton();
-        return uniqueInstance;
+        _uniqueInstance ??= new Singleton();
+        return _uniqueInstance;
     }
 }
