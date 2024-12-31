@@ -11,12 +11,14 @@ public class ChocolateBoiler
     // We have a static method which will always return the same instance of ChocolateBoiler
     public static ChocolateBoiler GetInstance()
     {
-        // Adds simple thread safety
+        // Double-check lock, ensures we only need to use the lock when the instance is null
+        if (_chocolateBoilerInstance is not null) return _chocolateBoilerInstance;
         lock (Padlock)
         {
-            _chocolateBoilerInstance ??= new ChocolateBoiler();
+            _chocolateBoilerInstance = new ChocolateBoiler();
             return _chocolateBoilerInstance;
         }
+
     }
 
     // The private constructor means nothing can instantiate a new instance of this class
