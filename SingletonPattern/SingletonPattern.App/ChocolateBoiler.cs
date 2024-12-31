@@ -5,14 +5,12 @@ public class ChocolateBoiler
     private bool _empty;
     private bool _boiled;
 
-    private static readonly ChocolateBoiler ChocolateBoilerInstance = new();
+    // Use C# Lazy<T> type to make laziness really simple.
+    // Also allows you to check whether the instance has been created yet with the
+    // IsValueCreated property
+    private static readonly Lazy<ChocolateBoiler> Lazy = new(() => new ChocolateBoiler());
 
-    public static ChocolateBoiler Instance => ChocolateBoilerInstance;
-
-    // Much simpler, static constructors are specified to execute only when an instance
-    // of the class is created or a static member is referenced, and to execute only once
-    // per AppDomain
-    static ChocolateBoiler(){}
+    public static ChocolateBoiler Instance => Lazy.Value;
 
     // The private constructor means nothing can instantiate a new instance of this class
     private ChocolateBoiler()
