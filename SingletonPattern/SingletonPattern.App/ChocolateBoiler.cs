@@ -6,12 +6,17 @@ public class ChocolateBoiler
     private bool _boiled;
 
     private static ChocolateBoiler? _chocolateBoilerInstance;
+    private static readonly Lock Padlock = new();
 
     // We have a static method which will always return the same instance of ChocolateBoiler
     public static ChocolateBoiler GetInstance()
     {
-        _chocolateBoilerInstance ??= new ChocolateBoiler();
-        return _chocolateBoilerInstance;
+        // Adds simple thread safety
+        lock (Padlock)
+        {
+            _chocolateBoilerInstance ??= new ChocolateBoiler();
+            return _chocolateBoilerInstance;
+        }
     }
 
     // The private constructor means nothing can instantiate a new instance of this class
