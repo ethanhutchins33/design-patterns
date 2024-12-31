@@ -7,12 +7,14 @@ public class ChocolateBoiler
 
     private static ChocolateBoiler? _chocolateBoilerInstance;
 
+    // We have a static method which will always return the same instance of ChocolateBoiler
     public static ChocolateBoiler GetInstance()
     {
         _chocolateBoilerInstance ??= new ChocolateBoiler();
         return _chocolateBoilerInstance;
     }
 
+    // The private constructor means nothing can instantiate a new instance of this class
     private ChocolateBoiler()
     {
         _empty = true;
